@@ -347,3 +347,43 @@
             background: linear-gradient(135deg, #805ad5, #6b46c1);
             color: white;
         }
+
+          /* Hint Section */
+        .hint-section {
+            background: linear-gradient(135deg, #ebf8ff, #bee3f8);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #667eea;
+            animation: slideInDown 0.5s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hint-title {
+            color: #2b6cb0;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .hint-text {
+            color: #2c5282;
+            font-size: 1.1rem;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        /* Feedback Section */
+        .feedback-section {
+            margin-bottom: 2rem;
+            animation: bounceIn 0.6s ease-out;
+        }
