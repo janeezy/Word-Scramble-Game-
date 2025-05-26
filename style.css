@@ -228,3 +228,44 @@
         .scrambled-word:hover {
             transform: scale(1.05);
         }
+
+            /* Input Section */
+        .input-section {
+            margin-bottom: 2rem;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+        }
+
+        .guess-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 1rem 1.5rem;
+            font-size: 1.3rem;
+            border: 3px solid #e2e8f0;
+            border-radius: 16px;
+            background: white;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 0.1rem;
+            transition: all 0.3s ease;
+            outline: none;
+            text-transform: uppercase;
+        }
+
+        .guess-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            transform: scale(1.02);
+        }
+
+        .guess-input:disabled {
+            background: #f7fafc;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
