@@ -57,7 +57,7 @@ word-scramble-game/
 
 Web3Bridge Cohort XIII Candidate
 
-- GitHub: [@yourusername](https://github.com/janeezy)
+- GitHub: @https://github.com/janeezy
 - Email: janeezyofficial@gmail.com
 
 
