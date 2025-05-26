@@ -405,3 +405,44 @@
                 transform: scale(1);
             }
         }
+
+            .feedback-message {
+            padding: 1.5rem;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feedback-message.correct {
+            background: linear-gradient(135deg, #c6f6d5, #9ae6b4);
+            color: #22543d;
+            border: 2px solid #48bb78;
+        }
+
+        .feedback-message.incorrect {
+            background: linear-gradient(135deg, #fed7d7, #feb2b2);
+            color: #742a2a;
+            border: 2px solid #e53e3e;
+        }
+
+        /* Game Over Section */
+        .game-over-section {
+            background: linear-gradient(135deg, #ffd89b, #19547b);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            animation: zoomIn 0.8s ease-out;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
