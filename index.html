@@ -65,5 +65,36 @@
                     disabled
                 >
             </div>
+              <!-- Game Buttons -->
+            <div class="game-buttons">
+                <button class="btn btn-primary" id="start-btn">Start Game</button>
+                <button class="btn btn-submit" id="submit-btn" style="display: none;">Submit Guess</button>
+                <button class="btn btn-hint" id="hint-btn" style="display: none;">Get Hint</button>
+                <button class="btn btn-skip" id="skip-btn" style="display: none;">Skip Word</button>
+                <button class="btn btn-restart" id="restart-btn" style="display: none;">Restart Game</button>
+            </div>
+        </div>
+
+
+         <!-- Hint Section -->
+        <div class="hint-section" id="hint-section" style="display: none;">
+            <h3 class="hint-title">💡 Hint:</h3>
+            <p class="hint-text" id="hint-text">Click "Get Hint" to see a clue!</p>
+        </div>
+
+        <!-- Feedback Section -->
+        <div class="feedback-section" id="feedback-section" style="display: none;">
+            <div class="feedback-message" id="feedback-message"></div>
+        </div>
+   <!-- Game Over Section -->
+        <div class="game-over-section" id="game-over-section" style="display: none;">
+            <h2 class="game-over-title">🎉 Game Over!</h2>
+            <div class="final-stats">
+                <p>Final Score: <span id="final-score">0</span></p>
+                <p>Words Solved: <span id="final-correct">0</span></p>
+                <p>Best Streak: <span id="final-streak">0</span></p>
+            </div>
+        </div>
+
 </body>
 </html>
