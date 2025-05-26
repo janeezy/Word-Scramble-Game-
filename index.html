@@ -16,6 +16,54 @@
             <p class="game-subtitle">Unscramble the letters to find the word!</p>
             <p class="cohort-info">Web3Bridge Cohort XIII Pre-Qualification Exercise</p>
         </div>
+
+         <!-- Game Statistics -->
+        <div class="game-stats">
+            <div class="stat-card">
+                <div class="stat-label">Score</div>
+                <div class="stat-value" id="score">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Correct Answers</div>
+                <div class="stat-value" id="correct-count">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Current Streak</div>
+                <div class="stat-value" id="streak">0</div>
+            </div>
+        </div>
+
+         <!-- Difficulty and Timer Section -->
+        <div class="game-info">
+            <div class="difficulty-indicator" id="difficulty">
+                Difficulty: Easy
+            </div>
+            <div class="timer-section">
+                <div class="timer" id="timer">⏱️ Time: 30s</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+        </div>
     
+           <!-- Main Game Area -->
+        <div class="game-area">
+            <!-- Scrambled Word Display -->
+            <div class="word-display">
+                <h2 class="scrambled-word" id="scrambled-word">READY TO START?</h2>
+            </div>
+
+            <!-- Input Section -->
+            <div class="input-section">
+                <label for="guess-input" class="input-label">Enter your guess:</label>
+                <input 
+                    type="text" 
+                    id="guess-input" 
+                    class="guess-input" 
+                    placeholder="Type your answer here..."
+                    autocomplete="off"
+                    disabled
+                >
+            </div>
 </body>
 </html>
