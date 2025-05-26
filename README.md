@@ -38,29 +38,23 @@ open index.html
 # Auto-refreshes on file changes at http://localhost:5500
 ```
 
-#### Option 3: Local Development Server (Optional)
-```bash
-# If you need a local server for testing:
-
-
 ## 📁 Project Structure
 
-```
 word-scramble-game/
 ├── index.html          # Complete game implementation
 ├── README.md           # This documentation
 └── .gitignore         # Git ignore file
-```
+
 
 ### Single File Architecture
-- **HTML5**: Semantic structure and game layout
-- **CSS3**: Embedded responsive styling with animations  
-- **JavaScript ES6+**: Complete game logic using modern vanilla JS
-- **LocalStorage**: Browser-native persistent data storage
+- HTML5: Semantic structure and game layout
+- CSS3: Embedded responsive styling with animations  
+- JavaScript ES6+: Complete game logic using modern vanilla JS
+- LocalStorage**: Browser-native persistent data storage
 
-**Note**: This is a pure front-end application with no server-side dependencies.
+**Note: This is a pure front-end application with no server-side dependencies.
 
--
+
 Web3Bridge Cohort XIII Candidate
 
 - GitHub: [@yourusername](https://github.com/janeezy)
