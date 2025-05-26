@@ -172,3 +172,15 @@
                 window.addEventListener('beforeunload', () => {
                     this.saveGameData();
                 });
+
+                // Visibility change (pause when tab not active)
+                document.addEventListener('visibilitychange', () => {
+                    if (document.hidden && this.gameActive) {
+                        this.pauseTimer();
+                    } else if (!document.hidden && this.gameActive) {
+                        this.resumeTimer();
+                    }
+                });
+
+                console.log('🔧 Event listeners bound successfully');
+            }
