@@ -184,3 +184,194 @@
 
                 console.log('🔧 Event listeners bound successfully');
             }
+              /**
+             * Validate and format user input
+             */
+            validateInput(event) {
+                const input = event.target;
+                let value = input.value;
+
+                // Remove non-alphabetic characters and convert to uppercase
+                value = value.replace(/[^a-zA-Z]/g, '').toUpperCase();
+                
+                // Update input value
+                input.value = value;
+
+                // Enable/disable submit button based on input
+                const hasValidInput = value.length > 0;
+                this.elements.submitBtn.disabled = !hasValidInput || !this.gameActive;
+
+                // Visual feedback for valid input
+                if (hasValidInput && this.gameActive) {
+                    input.classList.remove('shake');
+                    this.elements.submitBtn.classList.add('glow');
+                } else {
+                    this.elements.submitBtn.classList.remove('glow');
+                }
+            }
+
+            /**
+             * Start a new game
+             */
+            startGame() {
+                console.log('🚀 Starting new game...');
+                
+                // Reset game state
+                this.resetGameState();
+                
+                // Update UI
+                this.updateGameUI(true);
+                
+                // Start first word
+                this.nextWord();
+                
+                // Update display
+                this.updateDisplay();
+                
+                console.log('✅ Game started successfully!');
+            }
+
+            /**
+             * Reset all game state variables
+             */
+            resetGameState() {
+                this.gameActive = true;
+                this.score = 0;
+                this.correctCount = 0;
+                this.currentStreak = 0;
+                this.difficulty = 'easy';
+                this.hintsUsed = 0;
+                this.skipCount = 0;
+                this.gameStats.totalGames++;
+            }
+
+            /**
+             * Update UI elements for game start/end
+             */
+            updateGameUI(gameStarted) {
+                if (gameStarted) {
+                    // Show game controls
+                    this.elements.startBtn.style.display = 'none';
+                    this.elements.submitBtn.style.display = 'inline-block';
+                    this.elements.hintBtn.style.display = 'inline-block';
+                    this.elements.skipBtn.style.display = 'inline-block';
+                    this.elements.restartBtn.style.display = 'inline-block';
+                    
+                    // Enable input
+                    this.elements.guessInput.disabled = false;
+                    this.elements.guessInput.focus();
+                    
+                    // Hide sections
+                    this.hideSection(this.elements.gameOverSection);
+                    this.hideSection(this.elements.feedbackSection);
+                } else {
+                    // Show start button
+                    this.elements.startBtn.style.display = 'inline-block';
+                    this.elements.submitBtn.style.display = 'none';
+                    this.elements.hintBtn.style.display = 'none';
+                    this.elements.skipBtn.style.display = 'none';
+                    this.elements.restartBtn.style.display = 'none';
+                    
+                    // Disable input
+                    this.elements.guessInput.disabled = true;
+                    this.elements.guessInput.value = '';
+                }
+            }
+
+            /**
+             * Generate next word for the game
+             */
+            nextWord() {
+                if (!this.gameActive) return;
+
+                console.log(`📝 Generating next word (Difficulty: ${this.difficulty})`);
+
+                // Update difficulty based on progress
+                this.updateDifficulty();
+
+                // Get word list for current difficulty
+                const wordList = this.wordDatabase[this.difficulty];
+                
+                if (!wordList || wordList.length === 0) {
+                    this.endGame('No words available for current difficulty');
+                    return;
+                }
+
+                // Select random word
+                const randomIndex = Math.floor(Math.random() * wordList.length);
+                this.currentWord = wordList[randomIndex];
+                
+                // Generate scrambled version
+                this.scrambledWord = this.scrambleWord(this.currentWord.word);
+                
+                // Ensure scrambled word is different from original
+                let attempts = 0;
+                while (this.scrambledWord === this.currentWord.word && attempts < 20) {
+                    this.scrambledWord = this.scrambleWord(this.currentWord.word);
+                    attempts++;
+                }
+
+                // Update display
+                this.elements.scrambledWord.textContent = this.scrambledWord;
+                this.elements.scrambledWord.classList.add('pulse');
+                setTimeout(() => {
+                    this.elements.scrambledWord.classList.remove('pulse');
+                }, 2000);
+
+                // Reset input and hide sections
+                this.elements.guessInput.value = '';
+                this.elements.guessInput.focus();
+                this.hideSection(this.elements.hintSection);
+                this.hideSection(this.elements.feedbackSection);
+                
+                // Reset word-specific variables
+                this.hintsUsed = 0;
+                this.elements.hintBtn.disabled = false;
+
+                // Start timer
+                this.startTimer();
+
+                // Update stats
+                this.gameStats.totalWordsAttempted++;
+
+                console.log(`✅ New word ready: ${this.currentWord.word}`);
+            }
+
+            /**
+             * Scramble letters in a word using Fisher-Yates algorithm
+             */
+            scrambleWord(word) {
+                const letters = word.split('');
+                
+                // Fisher-Yates shuffle algorithm
+                for (let i = letters.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [letters[i], letters[j]] = [letters[j], letters[i]];
+                }
+                
+                return letters.join('');
+            }
+
+            /**
+             * Update difficulty based on progress
+             */
+            updateDifficulty() {
+                const previousDifficulty = this.difficulty;
+                
+                if (this.correctCount >= 10) {
+                    this.difficulty = 'hard';
+                } else if (this.correctCount >= 5) {
+                    this.difficulty = 'medium';
+                } else {
+                    this.difficulty = 'easy';
+                }
+
+                // Notify user of difficulty change
+                if (previousDifficulty !== this.difficulty) {
+                    this.showFeedback(
+                        `🎯 Difficulty increased to ${this.difficulty.toUpperCase()}!`,
+                        'correct',
+                        2000
+                    );
+                }
+            };
